@@ -42,7 +42,7 @@ TT_ASCII_ART = R""" _____ _            _____              _ _         _____     
   |_| |_| |_|\___|   |_|   \_/\_/ \___|_|_|\__, |   |_|\___|_|  |_| |_| |_|_|_| |_|\__,_|_|
                                            |___/                                           """
 
-def DATA_RET():
+def retrieveData():
     os.makedirs(CONF_DIR, exist_ok=True)
     
     if os.path.exists(DATA_PATH):
@@ -59,7 +59,7 @@ def DATA_RET():
 
     return USERNAME, DEVICE
 
-USERNAME, DEVICE = DATA_RET()
+USERNAME, DEVICE = retrieveData()
 
 TwellyConsole = Console()
 
