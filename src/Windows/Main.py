@@ -235,7 +235,7 @@ RenderGreatTitle(
 )
 Paragraphs = [
     "Welcome to the [bold]Twelly Terminal![/bold]\n",
-    "This terminal is an util for Two2Fall because he needed to create an good terminal because cmd is so bad for him and bash was so",
+    "This terminal is an util for Two2Fall because he needed to create an good terminal because CMD is so bad for him and Bash was so",
     "POSIX. so he created this for himself and obviously, you can use it without [green bold]ANY PROBLEM![/green bold], you will see the [italic]Two2Fall[/italic] stuff here",
     "like: ",
     " " * 4 + "- [italic]ByteBeat[/italic] music",
@@ -247,7 +247,7 @@ Paragraphs = [
     "of the ascii document, so, in what page you wanna go?",
     "Pages written by the author:\n",
     " " * 4 + "- About Two2Fall",
-    " " * 8 + "- [green italic]Who is he[/green italic]",
+    " " * 8 + "- [green italic]Who he is[/green italic]",
     " " * 8 + "- [red bold]The complete history of Two2Fall (Long)[/red bold]",
     " " * 8 + "- [cyan bold]Systhema Digitalis I[/cyan bold]",
     " " * 4 + "- ByteBeat Related",
