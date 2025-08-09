@@ -42,13 +42,7 @@ TT_ASCII_ART = R""" _____ _            _____              _ _         _____     
   |_| |_| |_|\___|   |_|   \_/\_/ \___|_|_|\__, |   |_|\___|_|  |_| |_| |_|_|_| |_|\__,_|_|
                                            |___/                                           """
 
-
-# Well done, ameen272
-# But remember, SCREAMING_SNAKE_CASE is for constants
-# Not functions.
-
-# OK then, fixed it.
-def retrieveData():
+def DataRet():
     os.makedirs(CONF_DIR, exist_ok=True)
 
     if os.path.exists(DATA_PATH):
@@ -66,7 +60,7 @@ def retrieveData():
     return USERNAME, DEVICE
 
 
-USERNAME, DEVICE = retrieveData()
+USERNAME, DEVICE = DataRet()
 
 TwellyConsole = Console()
 
