@@ -260,6 +260,3 @@ Paragraphs = [
     + "- Use any tool of the [italic]Twelly Creations[/italic] online in this terminal",
 ]
 RenderParagraph(Paragraphs, " " * 19)
-Selector = Prompt.ask(
-    " " * 19 + f"[italic green]{USERNAME}[/italic green][cyan]@{DEVICE}[/cyan] ~$"
-)
