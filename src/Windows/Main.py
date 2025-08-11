@@ -1,7 +1,7 @@
 """
-TheTwellyUtil.py       — An util for terminals created by Twell Evans
+TheTwellyUtil.py       — A util for terminals created by Twell Evans
 
-The Twelly Util is an util created by me that helps Two2Fall (Also known as Twell Evans)
+The Twelly Util is a util created by me that helps Two2Fall (Also known as Twell Evans)
 to be able to program better with an stylized terminal written in python. This does not
 need commands and dependencies so I hope you like this!
 
@@ -11,6 +11,8 @@ Used modules:
     - subprocess
     - os
     - random
+    - sys
+    - signal
 """
 
 from rich.console import Console
@@ -24,29 +26,33 @@ from rich.prompt import Prompt
 from rich.progress import track
 import random
 import time
+import subprocess
+import sys
+import signal
 
 # Important constants
 # These are the most important constants because
 # without them, this program could have an error
 
-HOME_DIR = os.path.expanduser("~")
-CONF_DIR = os.path.join(HOME_DIR, "AppData", "Local", "The_Twelly_Terminal")
-DATA_PATH = os.path.join(CONF_DIR, "data.txt")
+HOME_DIR      = os.path.expanduser("~")
+CONF_DIR      = os.path.join(HOME_DIR, 'AppData', 'Local', 'The_Twelly_Terminal')
+DATA_PATH     = os.path.join(CONF_DIR, 'data.txt')
 TERMINAL_NAME = "Twelly Terminal"
-AUTHOR = "TwellEvans"
+AUTHOR        = "TwellEvans"
 
-TT_ASCII_ART = R""" _____ _            _____              _ _         _____                   _             _ 
-|_   _| |__   ___  |_   _|_      _____| | |_   _  |_   _|__ _ __ _ __ ___ (_)_ __   __ _| |
-  | | | '_ \ / _ \   | | \ \ /\ / / _ \ | | | | |   | |/ _ \ '__| '_ ` _ \| | '_ \ / _` | |
-  | | | | | |  __/   | |  \ V  V /  __/ | | |_| |   | |  __/ |  | | | | | | | | | | (_| | |
-  |_| |_| |_|\___|   |_|   \_/\_/ \___|_|_|\__, |   |_|\___|_|  |_| |_| |_|_|_| |_|\__,_|_|
-                                           |___/                                           """
+def SigHan(sig, frame):
+	"""
+	SigHan()        -- A function that handles the SIGINT (Exit) CTRL-C signal.
+	"""
+	sys.exit(0)
+
+signal.signal(signal.SIGINT, SigHan)
 
 def DataRet():
     os.makedirs(CONF_DIR, exist_ok=True)
-
+    
     if os.path.exists(DATA_PATH):
-        with open(DATA_PATH, "r") as file:
+        with open(DATA_PATH, 'r') as file:
             lines = file.readlines()
             USERNAME = lines[0].strip()
             DEVICE = lines[1].strip()
@@ -54,13 +60,18 @@ def DataRet():
         USERNAME = input("Enter your preferred username: ")
         DEVICE = input("Enter your preferred hostname/device name: ")
 
-    with open(DATA_PATH, "w") as file:
+    with open(DATA_PATH, 'w') as file:
         file.write(f"{USERNAME}\n{DEVICE}\n")
 
     return USERNAME, DEVICE
 
-
 USERNAME, DEVICE = DataRet()
+TT_ASCII_ART = R""" _____ _            _____              _ _         _____                   _             _ 
+|_   _| |__   ___  |_   _|_      _____| | |_   _  |_   _|__ _ __ _ __ ___ (_)_ __   __ _| |
+  | | | '_ \ / _ \   | | \ \ /\ / / _ \ | | | | |   | |/ _ \ '__| '_ ` _ \| | '_ \ / _` | |
+  | | | | | |  __/   | |  \ V  V /  __/ | | |_| |   | |  __/ |  | | | | | | | | | | (_| | |
+  |_| |_| |_|\___|   |_|   \_/\_/ \___|_|_|\__, |   |_|\___|_|  |_| |_| |_|_|_| |_|\__,_|_|
+                                           |___/                                           """
 
 TwellyConsole = Console()
 
@@ -87,19 +98,30 @@ SPLASHTEXTS = [
 ]
 
 
-def RunPythonFile(Filename: str) -> None:
+def RunCommand(command: str) -> None:
     """
-    RunPythonFile()         —— A function that executes and evaluates Python files
-
-    This function evaluates, executes and shows the output of a Python file, but
-    this function does not have the functionality to execute a Python file with
-    arguments. That is because Two2Fall does not need a python file with arguments
-    so use this well
-
-    Arguments: `Filename` — The python file name to execute
-    Returns: `int` or `None`
+    RunCommand(command: str) -> None        -- A function that runs commands from the ./commands/ directory.
     """
-    os.system(f"python {Filename}")
+
+    parts = command.split(' ', 1)
+    if len(parts) == 0:
+        print("No command provided.")
+        return
+
+    filename = parts[0]
+    args = parts[1].split() if len(parts) > 1 else []
+
+    file_path = os.path.join('./commands', filename + '.py')
+
+    if not os.path.exists(file_path):
+        print(f"Error: This command does not exist.")
+        return
+
+    command_to_run = ['python', file_path] + args
+
+    process = subprocess.Popen(command_to_run)
+    process.wait()
+
 
 
 def Gradient(InputText: str, StartColor: str, EndColor: str):
@@ -261,6 +283,9 @@ Paragraphs = [
     + "- Use any tool of the [italic]Twelly Creations[/italic] online in this terminal",
 ]
 RenderParagraph(Paragraphs, " " * 19)
-Selector = Prompt.ask(
-    " " * 19 + f"[italic green]{USERNAME}[/italic green][cyan]@{DEVICE}[/cyan] ~$"
-)
+try:
+	while True:
+		Selector = Prompt.ask(" " * 19 + f"[italic green]{USERNAME}[/italic green][cyan]@{DEVICE}[/cyan] ~$")
+		RunCommand(Selector)
+except KeyboardInterrupt:
+	pass
