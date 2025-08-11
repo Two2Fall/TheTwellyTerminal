@@ -5,6 +5,6 @@ def Doccommands():
 	It takes no arguments.
 	"""
 	
-	print(" " * 19, "goto  - A command for opening documents, it takes a file as an argument.")
+	print(" " * 19, "goto  - A command for opening documents, it takes a file as an argument (Not implemented yet).")
 
 Doccommands()
