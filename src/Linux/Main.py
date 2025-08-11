@@ -104,17 +104,13 @@ def RunCommand(command: str) -> None:
     """
 
     parts = command.split(' ', 1)
-    if len(parts) == 0:
-        print("No command provided.")
-        return
-
     filename = parts[0]
     args = parts[1].split() if len(parts) > 1 else []
 
     file_path = os.path.join('./commands', filename + '.py')
 
     if not os.path.exists(file_path):
-        print(f"Error: Command '{file_path}' does not exist.")
+        print(" " * 19, "Error: Command not found or no command provided.")
         return
 
     command_to_run = ['python', file_path] + args
