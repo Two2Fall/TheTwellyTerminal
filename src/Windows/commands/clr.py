@@ -7,6 +7,6 @@ def Clr():
 	It takes no arguments.
 	"""
 	
-	os.system("clear")
+	os.system("cls")
 
 Clr()
