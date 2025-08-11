@@ -1,7 +1,7 @@
 """
 TheTwellyUtil.py       — A util for terminals created by Twell Evans
 
-The Twelly Util is an util created by me that helps Two2Fall (Also known as Twell Evans)
+The Twelly Util is a util created by me that helps Two2Fall (Also known as Twell Evans)
 to be able to program better with an stylized terminal written in python. This does not
 need commands and dependencies so I hope you like this!
 
