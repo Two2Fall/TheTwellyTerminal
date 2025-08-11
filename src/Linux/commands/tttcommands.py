@@ -4,3 +4,5 @@ def TTTCommands():
     """
 
     print("ttt  - The Twelly Tracker's command (Not implemented yet).")
+
+TTTCommands()
