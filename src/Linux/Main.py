@@ -98,12 +98,12 @@ SPLASHTEXTS = [
 ]
 
 
-def RunCommand(command: str) -> None:
+def RunCommand(Command: str) -> None:
     """
-    RunCommand(command: str) -> None        -- A function that runs commands from the ./commands/ directory.
+    RunCommand(Command: str) -> None        -- A function that runs commands from the ./commands/ directory.
     """
 
-    Parts = command.split(' ', 1)
+    Parts = Command.split(' ', 1)
     FileName = Parts[0]
     Args = Parts[1].split() if len(Parts) > 1 else []
 
