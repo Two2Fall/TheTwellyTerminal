@@ -1,6 +1,6 @@
-def Toolcommands():
+def ToolCommands():
 	"""
-	Toolcommands()        -- A function that prints out help related to tools.
+	ToolCommands()        -- A function that prints out help related to tools.
 	
 	It takes no arguments.
 	"""
@@ -8,4 +8,4 @@ def Toolcommands():
 	print(" " * 19, "clr    - Command that clears the current screen buffer.")
 	print(" " * 19, "CTRL-C - Button combination that exits the program.")
 
-Toolcommands()
+ToolCommands()
