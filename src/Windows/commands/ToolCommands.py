@@ -1,6 +1,6 @@
 def Toolcommands():
 	"""
-	Toolcommands()        -- A function that pronts out help related to tools.
+	Toolcommands()        -- A function that prints out help related to tools.
 	
 	It takes no arguments.
 	"""
