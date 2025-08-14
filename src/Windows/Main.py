@@ -103,19 +103,19 @@ def RunCommand(command: str) -> None:
     RunCommand(command: str) -> None        -- A function that runs commands from the ./commands/ directory.
     """
 
-    parts = command.split(' ', 1)
-    filename = parts[0]
-    args = parts[1].split() if len(parts) > 1 else []
+    Parts = command.split(' ', 1)
+    FileName = parts[0]
+    Args = parts[1].split() if len(parts) > 1 else []
 
-    file_path = os.path.join('./commands', filename + '.py')
+    FilePath = os.path.join('./commands', FileName + '.py')
 
-    if not os.path.exists(file_path):
+    if not os.path.exists(FilePath):
         print(" " * 19, "Error: Command not found or no command provided.")
         return
 
-    command_to_run = ['python', file_path] + args
+    CommandToRun = ['python', FilePath] + args
 
-    process = subprocess.Popen(command_to_run)
+    process = subprocess.Popen(CommandToRun)
     process.wait()
 
 
