@@ -104,8 +104,8 @@ def RunCommand(command: str) -> None:
     """
 
     Parts = command.split(' ', 1)
-    FileName = parts[0]
-    Args = parts[1].split() if len(parts) > 1 else []
+    FileName = Parts[0]
+    Args = Parts[1].split() if len(Parts) > 1 else []
 
     FilePath = os.path.join('./commands', FileName + '.py')
 
