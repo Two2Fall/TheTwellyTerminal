@@ -5,8 +5,8 @@ def Help():
 	It takes no arguments.
 	"""
 	
-	print(" " * 19, "doccommands  - Get help related to document commands.")
-	print(" " * 19, "toolcommands - Get help related to Tool commands.")
-	print(" " * 19, "tttcommands  - Get help related to The Twelly Creations.")
+	print(" " * 19, "DocCommands  - Get help related to document commands.")
+	print(" " * 19, "ToolCommands - Get help related to Tool commands.")
+	print(" " * 19, "TTTCommands  - Get help related to The Twelly Creations.")
 
 Help()
