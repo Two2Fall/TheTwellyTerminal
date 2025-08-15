@@ -37,8 +37,7 @@ class TextSection:
         """
         `TextSection().AppendParagraph()`         —— A method to append paragraphs
 
-        This method appends a paragraph into the text section, it can have style, so
-        you can personalize the text as you want.
+        This method appends a paragraph into the text section.
 
         Arguments:
             `Paragraph` — The paragraph to append
@@ -151,8 +150,10 @@ class Document:
         arguments, because this includes style and color, and more stuff.
 
         Arguments:
-            `DocumentName`: This parameter denotes the ascii document name
-            `DocumentAuthor`: This parameter denotes the author of the ascii document
+            `Text`: This parameter denotes the header text
+            `Subtitle`: This parameter denotes the subtitle text
+            `TextStyle`: This parameter denotes the header text style
+            `SubtitleStyle`: This parameter denotes the subtitle text style
         Returns: `None`
         """
         self.Data["Header"] = {
@@ -170,3 +171,18 @@ class Document:
                 "Subtitle Align": SubtitleStyle.get("Align", "Center"),
             },
         }
+
+    def ImportTextSection(self, Object: TextSection, TextSectionName: str, Style: str):
+        """
+        Document.ImportTextSection()         —— A method to import a text section in this class
+
+        This method imports and creates a text section the document. This text section must be
+        be below the header, otherwise, it will return an error.
+
+        Arguments:
+            `Object`: This parameter denotes the `TextSection()` object to import
+            `TextSectionName`: To identify this text section, this needs the text section name or ID
+            `Style`: This parameter denotes the text style
+        Returns: `None`
+        """
+        self.Data[f"Text Section #{TextSectionName}"] = {"Text": TextSection.Name}
