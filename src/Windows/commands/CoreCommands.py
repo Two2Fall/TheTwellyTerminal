@@ -38,9 +38,7 @@ def Exit(Code: int):
     exit(Code)
 
 
-def TTCCommand(
-    Action: str,
-):
+def TTCCommand(Action: str):
     """
     TTCCommand()       —— Play with The Twelly Creations
 
