@@ -11,11 +11,12 @@ Used modules:
 """
 
 import os
-from typing import Union, Optional
+from typing import Literal
 
 AUTHOR = "TwellEvans"  # Hey that's me
 VERSION = 1.0
 COMMANDS = ["clr", "exit", "goto", "ttc", "credits", "repo"]
+TTC_NAMES = ["TheTwellyTracker", "TheTwellyEngine", "TheTwellySequencer"]
 
 
 def ClearScreen():
@@ -38,7 +39,10 @@ def Exit(Code: int):
     exit(Code)
 
 
-def TTCCommand(Action: str):
+def TTCCommand(
+    Action: str,
+    Program: Literal["TheTwellyTracker", "TheTwellyEngine", "TheTwellySequencer"],
+) -> str:
     """
     TTCCommand()       —— Play with The Twelly Creations
 
@@ -46,5 +50,33 @@ def TTCCommand(Action: str):
     function needs arguments, so you have to specify the arguments.
 
     Arguments:
-        `Parameters`
+        `Action` — The action to do (e.g. `"launch"`, `"info"`, `"authors"`, `changelog`, etc.)
+        `Program` — The TTC program to do what the action says
+    Returns: `None`
     """
+    if Action.lower() not in ["launch", "info", "authors", "changelog"]:
+        print("That action does not exist. ")
+
+    STATEMENTS = {
+        "launch": {
+            "TheTwellyTracker": "Executing The Twelly Tracker...",
+            "TheTwellyEngine": "Executing The Twelly Engine...",
+            "TheTwellySequencer": "Executing The Twelly Sequencer...",
+        },
+        "info": {
+            "TheTwellyTracker": "Executing The Twelly Tracker Page...",
+            "TheTwellyEngine": "Executing The Twelly Engine Page...",
+            "TheTwellySequencer": "Executing The Twelly Sequencer Page...",
+        },
+        "authors": {
+            "TheTwellyTracker": "Two2Fall",
+            "TheTwellyEngine": "Two2Fall, with some inspirations of the MaxMaxMax engine",
+            "TheTwellySequencer": "Two2Fall",
+        },
+        "changelog": {
+            "TheTwellyTracker": "Executing the changelog of The Twelly Tracker Page",
+            "TheTwellyEngine": "Executing the changelog of The Twelly Engine Page...",
+            "TheTwellySequencer": "Executing the changelog of The Twelly Sequencer Page...",
+        },
+    }
+    return STATEMENTS[Action.lower()][Program]
